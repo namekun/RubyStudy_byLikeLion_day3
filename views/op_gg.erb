@@ -1,0 +1,16 @@
+<form>
+    <select name ="search_method">
+        <option value = "self">승/패 만 보고싶다!</option>
+        <option value = "opgg">op.gg에서 보고싶다!</option>
+    </select>
+    <input type ="text" placeholder ="소환사명" name = "username">
+    <input type ="submit" value ="search">
+</form>
+
+<%if params[:username]%> <!-- 눈에 보여야하는 건 %=, 아닌건 그냥 % -->
+ <ul>
+    <li><%= params[:username]%>님의 최근 20전 전적입니다.</li>
+    <li><%= @win%> 승</li>
+    <li><%= @lose%> 패</li>
+ </ul>
+<%end%>
