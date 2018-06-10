@@ -113,7 +113,7 @@ end
      
    ````
 
-   **client -> controller -> view 의 사이클을 돌 때, 하나의 한개의 단만 사용가능하다. 즉, 다음 단계로 넘어가면 그 전의 단계는 disconnection상태가 되기때문에, 위와같이 erb파일을 return 하는 방식으로 보여준다면 refresh를 했을 때 connection이 끊겼기 때문에 다시 받아올 수가 없다. 그러므로 저 방식으로 보여주는 것이 아닌 redirect로 다시 한번 요청을 보내준다. 보통 post방식에서는 view를 그대로 가져오는 것이 아닌, redirect로 가져오는 것을 약속으로 한다.** 
+   **client -> controller -> view 의 사이클을 돌 때, 하나에 한개의 단만 사용가능하다. 즉, 다음 단계로 넘어가면 그 전의 단계는 disconnection상태가 되기때문에, 위와같이 erb파일을 return 하는 방식으로 보여준다면 refresh를 했을 때 이미 connection이 끊겼기 때문에 다시 정보를 받아올 수가 없다. 그러므로 erb return 방식으로 보여주는 것이 아닌 redirect로 다시 한번 요청을 보내준다. 보통 post방식에서는 개발자가 View에 직접 접근하지 못하게 구성을 하기에, View를 그대로 가져오는 것이 아닌, 강제적으로 redirect로 url을 연결하여 서버에 접근해 정보를 가져오는 것을 약속으로 한다. (이 때문에 Post방식은 cycle이 두번 돈다고 하기도 한다)** 
 
    ````ruby
          	if pw.eql?(params[:password])          
